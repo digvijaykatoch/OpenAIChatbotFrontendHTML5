@@ -16,29 +16,17 @@
 
       addChatBubble(message, true);
 
-      fetch("/api/send-message", {
-
-          method: "POST",
-
-          headers: {
-
-            "Content-Type": "application/json",
-
-          },
-
-          body: JSON.stringify({ message }),
-
-        })
-
-        .then((response) => response.json())
-
-        .then((data) => {
-
-          addChatBubble(data.message, false);
-
-        })
-
-        .catch((error) => console.error(error));
+     fetch('http://localhost:5000/api/send-message', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+    'Origin': 'http://localhost:63342'
+  },
+  body: JSON.stringify({ message: 'Hello, world!' })
+})
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch((error) => console.error(error));
 
     });
 
