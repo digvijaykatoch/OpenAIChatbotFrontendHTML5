@@ -1,0 +1,58 @@
+        /* Chat container */
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* User message */
+        .container-user {
+            border-color: #2196F3;
+            background-color: #2196F3;
+            color: white;
+        }
+
+        /* OpenAI response */
+        .container-openai {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+        }
+
+        /* Clearfix to prevent float issues */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Chat input box */
+        #chat-input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
+
+        /* Chat send button */
+        #chat-send {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Chat send button on hover */
+        #chat-send:hover {
+            background-color: #45a049;
+        }
