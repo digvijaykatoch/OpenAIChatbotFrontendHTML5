@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ChatGPT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* Chat container */
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* User message */
+        .container-user {
+            border-color: #2196F3;
+            background-color: #2196F3;
+            color: white;
+        }
+
+        /* OpenAI response */
+        .container-openai {
+            border-color: #4CAF50;
+            background-color: #4CAF50;
+            color: white;
+            text-align: right;
+        }
+
+        /* Clearfix to prevent float issues */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Chat input box */
+        #chat-input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            resize: none;
+        }
+
+        /* Chat send button */
+        #chat-send {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Chat send button on hover */
+        #chat-send:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h2>ChatGPT</h2>
+    <div id="chat-container"></div>
+    <div class="clearfix">
+        <textarea id="chat-input" rows="4" cols="50"></textarea>
+        <button id="chat-send">Send</button>
+    </div>
+
+    <script>
+        // Chat container
+        const chatContainer = document.getElementById('chat-container');
+
+        // Chat input box and send button
+        const chatInput = document.getElementById('chat-input');
+        const chatSend = document.getElementById('chat-send');
+
+        // Function to add a message to the chat container
+        function addMessage(message, sender) {
+            // Create a new chat bubble
+            const bubble = document.createElement('div');
+            bubble.classList.add('container');
+            if (sender === 'user') {
+                bubble.classList.add('container-user');
+            } else {
+                bubble.classList.add('container-openai');
+            }
+
+            // Add the message text to the chat bubble
+            const text = document.createElement('p');
+            text.innerText = message;
+            bubble.appendChild(text);
+
+            // Add the chat bubble to the chat container
+            chatContainer.appendChild(bubble);
+        }
+
+        // Function to handle the chat send button click
+        async function sendMessage() {
+            // Get the user's message
+            const message = chatInput.value;
+
+            // Clear the input box
+            chatInput.value = '';
+
+            // Add the user's message to the chat container
+            addMessage(message, 'user');
+
+            // Send the user's message to the OpenAI API and get the response
+            const response = await fetch('/openai', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application
