@@ -1,38 +1,65 @@
-const chatArea = document.getElementById('chat-area');
-const messageInput = document.getElementById('message-input');
-const sendButton = document.getElementById('send-button');
+ const chatHistory = document.getElementById("chat-history");
 
-sendButton.addEventListener('click', async () => {
-  // Get the user's message
-  const message = messageInput.value.trim();
-  messageInput.value = '';
-  
-  // Show user's message in the chat area
-  const userMessageElement = document.createElement('div');
-  userMessageElement.className = 'bubble user-bubble';
-  userMessageElement.innerText = message;
-  chatArea.appendChild(userMessageElement);
+    const chatForm = document.getElementById("chat-form");
 
-  // Send the user's message to the server and get the response
-  const response = await fetch('/get_response', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message })
-  }).then(res => res.json());
+    const messageInput = document.getElementById("message");
 
-  // Show the response in the chat area
-  const botMessageElement = document.createElement('div');
-  botMessageElement.className = 'bubble bot-bubble';
-  botMessageElement.innerText = response.message;
-  chatArea.appendChild(botMessageElement);
-});
+ 
 
-// Allow sending messages by pressing enter key
-messageInput.addEventListener('keydown', event => {
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    sendButton.click();
-  }
-});
+    chatForm.addEventListener("submit", (event) => {
+
+      event.preventDefault();
+
+      const message = messageInput.value;
+
+      messageInput.value = "";
+
+      addChatBubble(message, true);
+
+      fetch("/api/send-message", {
+
+          method: "POST",
+
+          headers: {
+
+            "Content-Type": "application/json",
+
+          },
+
+          body: JSON.stringify({ message }),
+
+        })
+
+        .then((response) => response.json())
+
+        .then((data) => {
+
+          addChatBubble(data.message, false);
+
+        })
+
+        .catch((error) => console.error(error));
+
+    });
+
+ 
+
+    function addChatBubble(text, isUser) {
+
+      const chatBubble = document.createElement("div");
+
+      chatBubble.classList.add("chat-bubble");
+
+      if (isUser) {
+
+        chatBubble.classList.add("user");
+
+      }
+
+      chatBubble.textContent = text;
+
+      chatHistory.appendChild(chatBubble);
+
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+    }
