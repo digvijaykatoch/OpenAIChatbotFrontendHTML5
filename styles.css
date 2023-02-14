@@ -1,58 +1,115 @@
-        /* Chat container */
-        .container {
-            border: 2px solid #dedede;
-            background-color: #f1f1f1;
-            border-radius: 5px;
-            padding: 10px;
-            margin: 10px 0;
-        }
+body {
 
-        /* User message */
-        .container-user {
-            border-color: #2196F3;
-            background-color: #2196F3;
-            color: white;
-        }
+      margin: 0;
 
-        /* OpenAI response */
-        .container-openai {
-            border-color: #4CAF50;
-            background-color: #4CAF50;
-            color: white;
-            text-align: right;
-        }
+      padding: 0;
 
-        /* Clearfix to prevent float issues */
-        .clearfix::after {
-            content: "";
-            clear: both;
-            display: table;
-        }
+      font-family: Arial, sans-serif;
 
-        /* Chat input box */
-        #chat-input {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            background-color: #f8f8f8;
-            resize: none;
-        }
+    }
 
-        /* Chat send button */
-        #chat-send {
-            background-color: #4CAF50;
-            color: white;
-            padding: 14px 20px;
-            margin: 8px 0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
+ 
 
-        /* Chat send button on hover */
-        #chat-send:hover {
-            background-color: #45a049;
-        }
+    #chat-window {
+
+      width: 400px;
+
+      height: 500px;
+
+      background-color: #fff;
+
+      border-radius: 5px;
+
+      box-shadow: 0px 0px 10px #888;
+
+      margin: 20px auto;
+
+      overflow-y: scroll;
+
+      padding: 10px;
+
+    }
+
+ 
+
+    .chat-bubble {
+
+      background-color: #f1f0f0;
+
+      padding: 10px;
+
+      margin: 10px;
+
+      border-radius: 10px;
+
+      display: inline-block;
+
+      max-width: 70%;
+
+      word-wrap: break-word;
+
+    }
+
+ 
+
+    .chat-bubble.user {
+
+      background-color: #dcf8c6;
+
+      float: right;
+
+    }
+
+ 
+
+    #chat-history {
+
+      margin-bottom: 10px;
+
+    }
+
+ 
+
+    #chat-form {
+
+      display: flex;
+
+      align-items: center;
+
+    }
+
+ 
+
+    #message {
+
+      flex: 1;
+
+      padding: 10px;
+
+      margin-right: 10px;
+
+      border-radius: 5px;
+
+      border: none;
+
+      box-shadow: 0px 0px 5px #888;
+
+    }
+
+ 
+
+    #send-button {
+
+      background-color: #4CAF50;
+
+      color: #fff;
+
+      padding: 10px;
+
+      border: none;
+
+      border-radius: 5px;
+
+      cursor: pointer;
+
+    }
